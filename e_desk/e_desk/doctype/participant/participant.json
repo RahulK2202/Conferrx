@@ -1,0 +1,381 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-09-13 16:47:26.466393",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "personal_information_tab",
+  "participant_details_section",
+  "naming_series",
+  "title",
+  "event",
+  "first_name",
+  "last_name",
+  "full_name",
+  "gender",
+  "column_break_sylpb",
+  "mobile_number",
+  "e_mail",
+  "date_of_birth",
+  "profile_photo",
+  "qr_preview",
+  "category_files",
+  "section_break_sec2",
+  "indigenous_person",
+  "dietary_specifications",
+  "column_break_5fyxd",
+  "person_with_disability",
+  "allergies",
+  "section_break_sec3",
+  "residential_address",
+  "street_or_po",
+  "city",
+  "country",
+  "column_break_tdkfb",
+  "address_line_1",
+  "pincode_or_postal_address",
+  "state",
+  "section_break_sec4",
+  "contact_person",
+  "contact_number",
+  "column_break_z3lsm",
+  "conatct_e_mail",
+  "passport_details_section",
+  "first_name_as_per_passport",
+  "last_name_as_per_passport",
+  "date_of_issue",
+  "place_of_issue",
+  "date_of_expiry",
+  "column_break_spvp7",
+  "passport_number",
+  "passport_nationality",
+  "country_of_residence",
+  "country_of_nationality",
+  "idpassport_photo",
+  "qr"
+ ],
+ "fields": [
+  {
+   "fieldname": "participant_details_section",
+   "fieldtype": "Section Break",
+   "label": "Participant Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Participant Series",
+   "options": "GA15-.#####",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "First Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "e_mail",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "email",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Phone",
+   "options": "phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
+  },
+  {
+   "fieldname": "column_break_sylpb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of birth"
+  },
+  {
+   "fieldname": "profile_photo",
+   "fieldtype": "Attach Image",
+   "label": "Profile photo"
+  },
+  {
+   "fieldname": "category_files",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Category Files",
+   "options": "Category Table"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_sec2",
+   "fieldtype": "Section Break",
+   "label": "Medical Information"
+  },
+  {
+   "fieldname": "indigenous_person",
+   "fieldtype": "Select",
+   "label": "Indigenous Person",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "dietary_specifications",
+   "fieldtype": "Link",
+   "label": "Dietary Specifications",
+   "options": "Dietary Specifications List"
+  },
+  {
+   "fieldname": "column_break_5fyxd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "person_with_disability",
+   "fieldtype": "Select",
+   "label": "Person with Disability",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "allergies",
+   "fieldtype": "Data",
+   "label": "Allergies"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_sec3",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
+   "fieldname": "residential_address",
+   "fieldtype": "Data",
+   "label": "Residential Address"
+  },
+  {
+   "fieldname": "street_or_po",
+   "fieldtype": "Data",
+   "label": "Street and number or P.O. Box"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "column_break_tdkfb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1"
+  },
+  {
+   "fieldname": "pincode_or_postal_address",
+   "fieldtype": "Data",
+   "label": "Postal or PIN Code"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State/Province"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_sec4",
+   "fieldtype": "Section Break",
+   "label": "Emergency contact"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Emergency contact name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Data",
+   "label": "Emergency contact phone number",
+   "options": "phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_z3lsm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "conatct_e_mail",
+   "fieldtype": "Data",
+   "label": "Emergency contact email"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "passport_details_section",
+   "fieldtype": "Section Break",
+   "label": "Passport Details"
+  },
+  {
+   "fieldname": "first_name_as_per_passport",
+   "fieldtype": "Data",
+   "label": "Passport first name (as written in your passport)"
+  },
+  {
+   "fieldname": "last_name_as_per_passport",
+   "fieldtype": "Data",
+   "label": "Passport last name (as written in your passport)"
+  },
+  {
+   "fieldname": "date_of_issue",
+   "fieldtype": "Date",
+   "label": "Date of issue"
+  },
+  {
+   "fieldname": "place_of_issue",
+   "fieldtype": "Data",
+   "label": "Place Of Issue"
+  },
+  {
+   "fieldname": "date_of_expiry",
+   "fieldtype": "Date",
+   "label": "Date of expiry "
+  },
+  {
+   "fieldname": "column_break_spvp7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "passport_number",
+   "fieldtype": "Data",
+   "label": "Passport number"
+  },
+  {
+   "fieldname": "passport_nationality",
+   "fieldtype": "Data",
+   "label": "Passport nationality"
+  },
+  {
+   "fieldname": "country_of_residence",
+   "fieldtype": "Link",
+   "label": "Country of residence",
+   "options": "Country"
+  },
+  {
+   "fieldname": "country_of_nationality",
+   "fieldtype": "Link",
+   "label": "Country of nationality",
+   "options": "Country"
+  },
+  {
+   "fieldname": "idpassport_photo",
+   "fieldtype": "Data",
+   "label": "ID/Passport photo"
+  },
+  {
+   "fieldname": "personal_information_tab",
+   "fieldtype": "Tab Break",
+   "label": "Profile"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title"
+  },
+  {
+   "fieldname": "qr_preview",
+   "fieldtype": "HTML",
+   "label": "QR"
+  },
+  {
+   "fieldname": "event",
+   "fieldtype": "Link",
+   "label": "Event",
+   "options": "Confer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qr",
+   "fieldtype": "Data",
+   "label": "QR"
+  }
+ ],
+ "image_field": "profile_photo",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-24 14:19:36.955541",
+ "modified_by": "Administrator",
+ "module": "E Desk",
+ "name": "Participant",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name"
+}
