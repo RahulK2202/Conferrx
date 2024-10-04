@@ -42,10 +42,12 @@ class RegistrationDesk(Document):
         return _file.file_url
     
     # Registration completed -> converting the participant status as registered
-    def on_update(self):
-        for row in self.participant:
-            if not row.profile_img:
-                frappe.throw(f"Profile picture mandatory in {row.idx}")
+    # def on_update(self):
+    #     for row in self.participant:
+    #         if not row.profile_img:
+    #             frappe.throw(f"Profile picture mandatory in {row.idx}")
+
+
         #     doc = frappe.get_doc("Participant", row.participant_id)
         #     # qr=self.create_qr_participant( doc)
         #     doc.status = "Registered"
@@ -55,6 +57,8 @@ class RegistrationDesk(Document):
 
 
     # Registration canceled -> moving the particioant to old status
+
+
     def on_trash(self):
         for row in self.participant:
             event_participant = frappe.get_doc(

@@ -11,6 +11,7 @@
   "participant",
   "event",
   "abr",
+  "full_name",
   "column_break_xncz",
   "status",
   "is_paid",
@@ -367,11 +368,19 @@
    "fieldtype": "Data",
    "label": "Abr",
    "read_only": 1
+  },
+  {
+   "fetch_from": "participant.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Full Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-01 15:45:11.635764",
+ "modified": "2024-10-03 12:06:58.638660",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Event Participant",

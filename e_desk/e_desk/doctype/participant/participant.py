@@ -14,8 +14,9 @@ from frappe import _
 class Participant(Document):
 	# @frappe.whitelist(allow_guest=True)
 	def after_insert(self):
-		self.full_name = f"{self.first_name} {self.last_name}"
-		self.save(ignore_permissions=True)
+		if not self.full_name:
+			self.full_name = f"{self.first_name} {self.last_name}"
+			self.save(ignore_permissions=True)
 		if not self.e_mail:
 			frappe.throw("Email is required to create a new User.")
 		if not frappe.db.exists('User',self.e_mail):
@@ -373,3 +374,21 @@ def register_event_participant(email, confer_id):
 		return "Registration successful!"
 	else:
 		return "Event is not found"
+
+
+
+
+# @frappe.whitelist(allow_guest=True)
+# def testapi():
+# 	print("welcomeeeeeeeeeeeeeeeeeeeeee")
+
+# 	child_records = frappe.get_all("Confer Agenda", filters={"parentfield": ["=", ""]}, fields=["name"])
+
+# 	for record in child_records:
+# 		frappe.db.set_value("Confer Agenda", record['name'], 'parentfield', 'agenda')
+# 		frappe.db.commit()
+
+# 	frappe.msgprint(f"Updated {len(child_records)} records successfully!")
+
+
+
