@@ -18,7 +18,7 @@
  "list_columns": [],
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2024-10-01 12:13:01.447996",
+ "modified": "2024-10-06 11:35:12.766753",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "event-participant-registration",
@@ -85,15 +85,15 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "fieldname": "last_name",
+   "fieldname": "full_name",
    "fieldtype": "Data",
    "hidden": 0,
-   "label": "Last Name",
+   "label": "Full Name",
    "max_length": 0,
    "max_value": 0,
    "precision": "",
    "read_only": 0,
-   "reqd": 0,
+   "reqd": 1,
    "show_in_filter": 0
   },
   {

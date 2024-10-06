@@ -64,8 +64,7 @@ class RegistrationDesk(Document):
             event_participant = frappe.get_doc(
             "Event Participant",
             {
-                "participant": row.participant_id,
-                "event": self.confer
+                "name": row.participant_id,
             }
             )
           
@@ -77,23 +76,29 @@ class RegistrationDesk(Document):
             event_participant.save()
             
    
-    def autoname(self):
-        if self.participant:
-            first_item =self.participant[0]
-            first_item_name=first_item.participant_name
-            self.name = parse_naming_series(f"{first_item_name}-.#")
+
+
+    # def autoname(self):
+    #     if self.participant:
+    #         first_item =self.participant[0]
+    #         first_item_name=first_item.participant_name
+    #         self.name = parse_naming_series(f"{first_item_name}-.#")
 
 
     def on_submit(self):
         # Retrieve the participant ID from the Participant Table using self.participant[0]
         participant_data = frappe.get_value("Participant Table", self.participant[0], ["participant_id", "qr_img","name"])  
+        print(participant_data,"dataaaaaaaaaaaaaaa")
         participant_id, qr_img,id_name = participant_data
-        participant_qr=frappe.get_value("Participant",  participant_id, "qr")
+
+        profile_id=frappe.get_value("Event Participant",participant_id,"participant")
+     
+        participant_qr=frappe.get_value("Participant",  profile_id, "qr")
         #not found qrcode
         if participant_qr:
             frappe.db.set_value('Participant Table', id_name, 'qr_img', participant_qr)
         else:
-            pr_doc = frappe.get_doc("Participant", participant_id)
+            pr_doc = frappe.get_doc("Participant", profile_id)
 
             # Call the create_qr_participant method
             qr_url = RegistrationDesk.create_qr_participant(pr_doc)
@@ -104,7 +109,7 @@ class RegistrationDesk(Document):
         event_participant = frappe.get_doc(
             "Event Participant",
             {
-                "participant": participant_id,
+                "participant": profile_id,
                 "event": self.confer
             }
         )
@@ -168,23 +173,53 @@ class RegistrationDesk(Document):
  
 #     return participants
 
+
+
+# @frappe.whitelist()
+# def event_participant_filter(doctype, txt, searchfield, start, page_len, filters):
+#     conference = filters.get('conference')
+
+#     # Filtering participants who are not registered in the Registration Desk for this particular event
+#     participants = frappe.db.sql("""
+#         SELECT p.name, p.full_name
+#         FROM `tabParticipant` p
+#         WHERE p.name IN (
+#             SELECT ep.participant
+#             FROM `tabEvent Participant` ep
+#             WHERE ep.event = %(conference)s
+#         )
+#         AND p.name NOT IN (
+#             SELECT pt.participant_id
+#             FROM `tabRegistration Desk` rd
+#             JOIN `tabParticipant Table` pt ON pt.parent = rd.name
+#             WHERE rd.confer = %(conference)s
+#         )
+#         AND p.name LIKE %(txt)s
+#         LIMIT %(start)s, %(page_len)s
+#     """, {
+#         'conference': conference,
+#         'txt': "%" + txt + "%",
+#         'start': start,
+#         'page_len': page_len
+#     })
+
+#     return participants
+
+
 @frappe.whitelist()
 def event_participant_filter(doctype, txt, searchfield, start, page_len, filters):
     conference = filters.get('conference')
+    print(conference, "confere.....")
+    
 
-    # Filtering participants who are not registered in the Registration Desk for this particular event
     participants = frappe.db.sql("""
-        SELECT p.name, p.full_name
-        FROM `tabParticipant` p
-        WHERE p.name IN (
-            SELECT ep.participant
-            FROM `tabEvent Participant` ep
-            WHERE ep.event = %(conference)s
-        )
+        SELECT p.name, p.full_name 
+        FROM `tabEvent Participant` p
+        WHERE p.event = %(conference)s
         AND p.name NOT IN (
-            SELECT pt.participant_id
+            SELECT pt.participant_id 
             FROM `tabRegistration Desk` rd
-            JOIN `tabParticipant Table` pt ON pt.parent = rd.name
+            JOIN `tabParticipant Table` pt ON pt.parent = rd.name 
             WHERE rd.confer = %(conference)s
         )
         AND p.name LIKE %(txt)s
@@ -197,4 +232,8 @@ def event_participant_filter(doctype, txt, searchfield, start, page_len, filters
     })
 
     return participants
+
+
+
+
 

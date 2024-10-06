@@ -35,10 +35,21 @@ frappe.ui.form.on('Registration Desk', {
 			}
         });
     },
+
+
+
+
+
+
+
+
+
+
 	refresh:function(frm){
 		
 		let imgList = [];
 		(frm.doc.participant || []).forEach(row => {
+			console.log(row,"this is row")
 			imgList.push({'img': row.profile_img})
 		});
 
@@ -83,6 +94,10 @@ frappe.ui.form.on('Registration Desk', {
 
 	},
 
+
+
+
+	
 	participant_profile:function(frm){
 		if(frm.doc.part_profile){
 			let $profileimg = `

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "naming_series:",
+ "autoname": "format:CCA-{YYYY}-{####}",
  "creation": "2023-09-13 16:47:26.466393",
  "default_view": "List",
  "doctype": "DocType",
@@ -75,9 +75,9 @@
   {
    "fieldname": "first_name",
    "fieldtype": "Data",
-   "hidden": 1,
    "in_list_view": 1,
-   "label": "First Name"
+   "label": "First Name",
+   "reqd": 1
   },
   {
    "fieldname": "last_name",
@@ -87,7 +87,8 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full Name"
+   "label": "Full Name",
+   "reqd": 1
   },
   {
    "fieldname": "e_mail",
@@ -332,11 +333,11 @@
  "image_field": "profile_photo",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-24 14:19:36.955541",
+ "modified": "2024-10-06 11:32:16.654727",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Participant",
- "naming_rule": "By \"Naming Series\" field",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

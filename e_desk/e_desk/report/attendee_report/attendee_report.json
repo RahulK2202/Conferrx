@@ -9,7 +9,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letterhead": null,
- "modified": "2024-09-24 13:31:51.302827",
+ "modified": "2024-10-06 11:06:39.942823",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Attendee Report",
@@ -21,9 +21,6 @@
  "roles": [
   {
    "role": "System Manager"
-  },
-  {
-   "role": "Participant"
   },
   {
    "role": "Volunteer"
