@@ -392,3 +392,32 @@ def register_event_participant(email, confer_id):
 
 
 
+
+# @frappe.whitelist(allow_guest=True)
+# def testapi():
+# 	data = frappe.db.sql("""
+#     SELECT rg.name AS registration_desk, ep.name AS participant_id, ep.full_name, pt.profile_photo
+#     FROM `tabRegistration Desk` AS rg
+#     JOIN `tabParticipant` AS pt
+#     ON pt.old_data = rg.old_id
+#     JOIN `tabEvent Participant` AS ep
+#     ON ep.participant = pt.name
+# 	""", as_dict=1)  # Use as_dict=1 for easier field access
+
+# 	for item in data:
+# 		# Create a new Participant Table child doctype entry
+# 		doc = frappe.new_doc('Participant Table')
+# 		doc.participant_id = item['participant_id']
+# 		doc.participant_name = item['full_name']
+# 		doc.profile_img = item['profile_photo']
+# 		doc.parent = item['registration_desk']
+# 		doc.parentfield = "participant"  # Ensure this is correct
+# 		doc.parenttype = 'Registration Desk'
+
+# 		# Insert the new doc (this also saves it)
+# 		try:
+# 			doc.insert(ignore_permissions=True)
+# 			frappe.db.commit()  # Ensure the transaction is committed
+# 		except Exception as e:
+# 			frappe.log_error(f"Error inserting participant: {str(e)}", "Participant Insert Error")
+

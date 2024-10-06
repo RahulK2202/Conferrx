@@ -94,6 +94,10 @@ class RegistrationDesk(Document):
         profile_id=frappe.get_value("Event Participant",participant_id,"participant")
      
         participant_qr=frappe.get_value("Participant",  profile_id, "qr")
+        participant_img=frappe.get_value("Participant",profile_id,"profile_photo")
+        if participant_img:
+            frappe.db.set_value('Participant Table', id_name, 'profile_img',  participant_img)
+
         #not found qrcode
         if participant_qr:
             frappe.db.set_value('Participant Table', id_name, 'qr_img', participant_qr)
@@ -105,6 +109,7 @@ class RegistrationDesk(Document):
             frappe.db.set_value('Participant Table', id_name, 'qr_img', qr_url)
 
     
+
         # Fetch the Event Participant document using the participant_id and confer
         event_participant = frappe.get_doc(
             "Event Participant",
@@ -113,8 +118,18 @@ class RegistrationDesk(Document):
                 "event": self.confer
             }
         )
-        # Update the Event Participant document fields
-        event_participant.is_paid = True
+
+
+        if self.mode_of_payment:
+            for payment in self.mode_of_payment:
+                print(payment,"this is payment...............")
+                amount=frappe.get_value("Mode of payment",payment,"amount")
+                print(amount,"this is amount")
+                if float(amount)>0:
+                    event_participant.is_paid = True
+                else: 
+                     event_participant.is_paid = False 
+   
         event_participant.reg_status = "Approved"
         event_participant.status = "Registered"
 

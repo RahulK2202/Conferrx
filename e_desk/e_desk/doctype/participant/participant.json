@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:CCA-{YYYY}-{####}",
+ "autoname": "naming_series:",
  "creation": "2023-09-13 16:47:26.466393",
  "default_view": "List",
  "doctype": "DocType",
@@ -68,7 +68,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Participant Series",
-   "options": "GA15-.#####",
+   "options": "CCA-.YYYY.-.####",
    "read_only": 1,
    "reqd": 1
   },
@@ -333,11 +333,11 @@
  "image_field": "profile_photo",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:32:16.654727",
+ "modified": "2024-10-06 20:16:44.947664",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Participant",
- "naming_rule": "Expression",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
