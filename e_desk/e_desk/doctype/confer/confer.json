@@ -10,6 +10,8 @@
  "field_order": [
   "title",
   "abr",
+  "venuelocation",
+  "theme",
   "start_date",
   "end_date",
   "agenda",
@@ -63,12 +65,22 @@
    "fieldtype": "Data",
    "label": "Abr",
    "reqd": 1
+  },
+  {
+   "fieldname": "venuelocation",
+   "fieldtype": "Data",
+   "label": "Venue/Location"
+  },
+  {
+   "fieldname": "theme",
+   "fieldtype": "Data",
+   "label": "Theme"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-10-01 15:53:58.435135",
+ "modified": "2024-10-07 10:33:04.959485",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Confer",
