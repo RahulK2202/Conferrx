@@ -15,7 +15,7 @@ class RegistrationDesk(Document):
     @classmethod
     def create_qr_participant(self, pr_doc):
         qr_image = io.BytesIO()
-        data={"e_mail":pr_doc.e_mail,"mobile_number":pr_doc.mobile_number,"name":pr_doc.name}
+        data={"name":pr_doc.name}
         data=json.dumps(data,indent=4,sort_keys=True,default=str)
         data_ = qr_create(data, error='L')
         data_.png(qr_image, scale=4, quiet_zone=1)

@@ -15,7 +15,10 @@ class Participant(Document):
 	# @frappe.whitelist(allow_guest=True)
 	def after_insert(self):
 		if not self.full_name:
-			self.full_name = f"{self.first_name} {self.last_name}"
+			if self.last_name:
+				self.full_name = f"{self.first_name} {self.last_name}"
+			else:
+				self.full_name = self.first_name
 			self.save(ignore_permissions=True)
 		if not self.e_mail:
 			frappe.throw("Email is required to create a new User.")
