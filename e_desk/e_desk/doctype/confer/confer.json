@@ -9,11 +9,13 @@
  "engine": "InnoDB",
  "field_order": [
   "title",
+  "theme",
   "abr",
   "venuelocation",
-  "theme",
+  "column_break_zwrv",
   "start_date",
   "end_date",
+  "section_break_mtgc",
   "agenda",
   "is_private",
   "attach_files"
@@ -75,12 +77,20 @@
    "fieldname": "theme",
    "fieldtype": "Data",
    "label": "Theme"
+  },
+  {
+   "fieldname": "column_break_zwrv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mtgc",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-10-07 10:33:04.959485",
+ "modified": "2024-10-08 15:33:14.149235",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Confer",
