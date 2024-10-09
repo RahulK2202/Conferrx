@@ -3,8 +3,31 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import getdate
 
 class Confer(Document):
+
+	def validate(self):
+		# Dictionary to track programs by date
+		programme_date_map = {}
+
+		for agenda in self.agenda:
+			print(agenda,"this is agendaaaaaa,,............")
+			programme = agenda.program_agenda
+			start_date = getdate(agenda.start_date)
+
+			print(programme,start_date,"start_datestart_date")
+			# Create a unique key for the program and date combination
+			key = (programme.lower(), start_date)
+			print(programme_date_map,"programme_date_mapprogramme_date_map")
+			# Check if the programme already exists for the same day
+			if key in programme_date_map:
+				frappe.throw(f"Programme '{programme}' already exists for the date {start_date}. You cannot add the same programme twice on the same day.")
+			
+			# Store the key to track this programme on the given date
+			programme_date_map[key] = True
+
+
 
 	def before_save(self):
         # Create a folder for this confer if it doesn't already exist

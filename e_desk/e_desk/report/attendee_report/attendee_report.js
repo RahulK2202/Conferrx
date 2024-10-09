@@ -7,6 +7,13 @@ frappe.query_reports["Attendee Report"] = {
             "depends_on": "eval:doc.confer"
         },
         {
+            "fieldname": "date",
+            "label": __("Date"),
+            "fieldtype": "Date",
+            "default": frappe.datetime.get_today(),  // Optional: Sets the default to today's date
+            "depends_on": "eval:doc.confer"  // You can apply conditions similar to the programme field
+        },
+        {
             "fieldname": "confer",
             "label": __("Confer"),
             "fieldtype": "Link",
