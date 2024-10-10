@@ -66,7 +66,8 @@
    "fieldname": "abr",
    "fieldtype": "Data",
    "label": "Abr",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "venuelocation",
@@ -90,7 +91,7 @@
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2024-10-08 15:33:14.149235",
+ "modified": "2024-10-10 10:50:03.000354",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Confer",
