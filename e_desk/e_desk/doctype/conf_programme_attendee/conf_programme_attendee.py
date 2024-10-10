@@ -14,20 +14,19 @@ def scanning_validations(doc, programme,confer):
 	
 	today_date = getdate(today())
 	print(today_date,"this is today......................")
-	# agenda_id=frappe.db.get_value("Confer Agenda",{"parent":confer,"programme_agenda":})
-	
+
 	agenda_ids = frappe.db.get_value(
         "Confer Agenda",
         filters={
-            "parent": confer,  # Assuming `confer` is the conference ID you're filtering by
-            "program_agenda": programme,  # Assuming `programme` is the programme you're filtering by
+            "parent": confer, 
+            "program_agenda": programme,  
             "start_date": ["between", [f"{today_date} 00:00:00", f"{today_date} 23:59:59"]]
         },
-        pluck="name"  # Retrieves only the 'name' (or agenda_id) field
+        pluck="name"  
     )
 	print(agenda_ids,"agenda id..........................")
 
-
+	print(doc,confer,"doc and conferrr")
 	event_participant_id = frappe.db.get_value("Event Participant", {"participant": doc, "event": confer}, "name")
 	
 	if not event_participant_id:
