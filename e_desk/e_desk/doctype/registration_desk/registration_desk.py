@@ -121,9 +121,9 @@ class RegistrationDesk(Document):
 
         if self.mode_of_payment:
             for payment in self.mode_of_payment:
-                print(payment,"this is payment...............")
+              
                 amount=frappe.get_value("Mode of payment",payment,"amount")
-                print(amount,"this is amount")
+              
                 if float(amount)>0:
                     event_participant.is_paid = True
                 else: 
