@@ -88,7 +88,6 @@ class RegistrationDesk(Document):
     def on_submit(self):
         # Retrieve the participant ID from the Participant Table using self.participant[0]
         participant_data = frappe.get_value("Participant Table", self.participant[0], ["participant_id", "qr_img","name"])  
-        print(participant_data,"dataaaaaaaaaaaaaaa")
         participant_id, qr_img,id_name = participant_data
 
         profile_id=frappe.get_value("Event Participant",participant_id,"participant")
