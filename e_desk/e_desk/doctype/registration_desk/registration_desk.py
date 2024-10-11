@@ -90,7 +90,7 @@ class RegistrationDesk(Document):
             participant_qr = frappe.get_value("Participant", profile_id, "qr")
             print(participant_qr,"this is rowWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
             row.qr_img=participant_qr
-            
+
     def on_submit(self):
 
         for row in self.participant:
@@ -119,6 +119,7 @@ class RegistrationDesk(Document):
             event_participant.is_paid = is_paid
             event_participant.reg_status = "Approved"
             event_participant.status = "Registered"
+            event_participant.custom_kit_provided=self.kit_provided_
 
             # Save the changes for each participant
             event_participant.save()
