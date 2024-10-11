@@ -74,6 +74,7 @@ def get_programmes(confer):
         SELECT agenda.program_agenda, agenda.start_date
         FROM `tabConfer Agenda` AS agenda
         WHERE agenda.parent = %s AND DATE(agenda.start_date) = %s
+		AND agenda.custom_scannable = 1
     """, (confer, today_date), as_list=1)
 
     print(programmes)

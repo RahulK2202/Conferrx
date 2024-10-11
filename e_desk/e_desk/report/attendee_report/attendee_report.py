@@ -94,15 +94,30 @@ def execute(filters=None):
 
 
 
+
+
 @frappe.whitelist()
-def confer_agenda_list(confer):
-    print(confer,"this came here....................")
+def confer_agenda_list(confer, date_value):
+    print(confer, "this came here....................")
+    print(date_value, "dateeee...")
+
+    # Convert string date to a datetime object and reformat
+    date_value_obj = datetime.strptime(date_value, '%Y-%m-%d')
+    formatted_date = date_value_obj.strftime('%Y-%m-%d')
+    print(formatted_date, "this is the formatted date")
+
+    # SQL query with correct parameter placeholders
     programmes = frappe.db.sql("""
-        SELECT DISTINCT agenda.program_agenda
+        SELECT agenda.program_agenda
         FROM `tabConfer Agenda` AS agenda
         WHERE agenda.parent = %s
-    """, (confer,), as_list=1)  # The closing parentheses were missing
-    print(programmes,"query resultssss.....................")
+        AND agenda.custom_scannable = 1
+        AND DATE(agenda.start_date) = %s
+    """, (confer, formatted_date), as_list=1)
 
-    return [prog[0] for prog in programmes]  # Return only the first element of each row (programme name)
+    print(programmes, "query results.....................")
+
+    # Return only the first element of each row (programme name)
+    return [prog[0] for prog in programmes]
+
 
