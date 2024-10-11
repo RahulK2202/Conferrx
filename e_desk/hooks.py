@@ -51,7 +51,9 @@ app_license = "MIT"
 fixtures = [
   
     {"dt": "Custom Field", "filters": [["module", "=", "E Desk"]],
-    "prefix": "e_desk_custom_fields"}
+    "prefix": "e_desk_custom_fields"},
+     {"dt": "Print Format", "filters": [["module", "=", "E Desk"]],
+    "prefix": "e_desk_print_format"}
 ]
 
 
