@@ -88,7 +88,7 @@
    "fieldname": "full_name",
    "fieldtype": "Data",
    "label": "Full Name",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "fieldname": "e_mail",
