@@ -84,59 +84,49 @@ class RegistrationDesk(Document):
     #         first_item_name=first_item.participant_name
     #         self.name = parse_naming_series(f"{first_item_name}-.#")
 
-
+    def before_save(self):
+        for row in self.participant:
+            profile_id = frappe.get_value("Event Participant", row.participant_id, "participant")
+            participant_qr = frappe.get_value("Participant", profile_id, "qr")
+            print(participant_qr,"this is rowWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+            row.qr_img=participant_qr
+            
     def on_submit(self):
-        # Retrieve the participant ID from the Participant Table using self.participant[0]
-        participant_data = frappe.get_value("Participant Table", self.participant[0], ["participant_id", "qr_img","name"])  
-        participant_id, qr_img,id_name = participant_data
 
-        profile_id=frappe.get_value("Event Participant",participant_id,"participant")
-     
-        participant_qr=frappe.get_value("Participant",  profile_id, "qr")
-        participant_img=frappe.get_value("Participant",profile_id,"profile_photo")
-        if participant_img:
-            frappe.db.set_value('Participant Table', id_name, 'profile_img',  participant_img)
-
-        #not found qrcode
-        if participant_qr:
-            frappe.db.set_value('Participant Table', id_name, 'qr_img', participant_qr)
-        else:
-            pr_doc = frappe.get_doc("Participant", profile_id)
-
-            # Call the create_qr_participant method
-            qr_url = RegistrationDesk.create_qr_participant(pr_doc)
-            frappe.db.set_value('Participant Table', id_name, 'qr_img', qr_url)
-
+        for row in self.participant:
+            
+            profile_id = frappe.get_value("Event Participant", row.participant_id, "participant")
+            # participant_qr = frappe.get_value("Participant", profile_id, "qr")
+            # print(participant_qr,"this is rowWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+            # row.qr_img=participant_qr
     
+            event_participant = frappe.get_doc(
+                "Event Participant",
+                {
+                    "participant": profile_id,
+                    "event": self.confer
+                }
+            )
 
-        # Fetch the Event Participant document using the participant_id and confer
-        event_participant = frappe.get_doc(
-            "Event Participant",
-            {
-                "participant": profile_id,
-                "event": self.confer
-            }
-        )
+            is_paid = False  
+            if self.mode_of_payment:
+                for payment in self.mode_of_payment:
+                    amount = frappe.get_value("Mode of payment", payment, "amount")
+                    if float(amount) > 0:
+                        is_paid = True
+                        break 
+            # Update the Event Participant table with payment and registration status
+            event_participant.is_paid = is_paid
+            event_participant.reg_status = "Approved"
+            event_participant.status = "Registered"
 
+            # Save the changes for each participant
+            event_participant.save()
+            print("NEXT ID COMING..............")
 
-        if self.mode_of_payment:
-            for payment in self.mode_of_payment:
-              
-                amount=frappe.get_value("Mode of payment",payment,"amount")
-              
-                if float(amount)>0:
-                    event_participant.is_paid = True
-                else: 
-                     event_participant.is_paid = False 
-   
-        event_participant.reg_status = "Approved"
-        event_participant.status = "Registered"
+        # Optionally, show a confirmation message after processing all participants
+        frappe.msgprint("All participants' registration and payment status have been updated successfully.")
 
-        # Save the changes
-        event_participant.save()
-
-        # Optionally, show a confirmation message
-        frappe.msgprint("Participant registration has been updated successfully.")
 
 
     # def on_submit(doc):
@@ -230,6 +220,7 @@ def event_participant_filter(doctype, txt, searchfield, start, page_len, filters
         SELECT p.name, p.full_name 
         FROM `tabEvent Participant` p
         WHERE p.event = %(conference)s
+        AND p.status != 'Registered'                        
         AND p.name NOT IN (
             SELECT pt.participant_id 
             FROM `tabRegistration Desk` rd

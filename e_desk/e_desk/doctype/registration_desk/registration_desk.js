@@ -44,54 +44,54 @@ frappe.ui.form.on('Registration Desk', {
 
 
 
-	refresh:function(frm){
+	// refresh:function(frm){
 		
-		let imgList = [];
-		(frm.doc.participant || []).forEach(row => {
-			console.log(row,"this is row")
-			imgList.push({'img': row.profile_img})
-		});
+	// 	let imgList = [];
+	// 	(frm.doc.participant || []).forEach(row => {
+	// 		console.log(row,"this is row")
+	// 		imgList.push({'img': row.profile_img})
+	// 	});
 
-		let imgHTML = ''
+	// 	let imgHTML = ''
 
-		imgList.forEach(img => {
-			if (img.img) {
-				imgHTML += `
-				<div>
-					<img src='${img.img}' alt='IMG' height="100" width="100">
-					<br>
-					<br>
-				</div>
-				`
-			}
-		});
+	// 	imgList.forEach(img => {
+	// 		if (img.img) {
+	// 			imgHTML += `
+	// 			<div>
+	// 				<img src='${img.img}' alt='IMG' height="100" width="100">
+	// 				<br>
+	// 				<br>
+	// 			</div>
+	// 			`
+	// 		}
+	// 	});
 
-		frm.get_field("profile_preview").$wrapper.html(imgHTML);
+	// 	frm.get_field("profile_preview").$wrapper.html(imgHTML);
 
 
-		let qrList = [];
-		(frm.doc.participant || []).forEach(row => {
-			qrList.push({'img': row.qr_img})
-		});
+	// 	let qrList = [];
+	// 	(frm.doc.participant || []).forEach(row => {
+	// 		qrList.push({'img': row.qr_img})
+	// 	});
 
-		let qrHTML = ''
+	// 	let qrHTML = ''
 
-		qrList.forEach(img => {
-			if (img.img) {
-				qrHTML += `
-				<div>
-					<img src='${img.img}' alt='IMG' height="100" width="100">
-					<br>
-					<br>
-				</div>
-				`
-			}
-		});
+	// 	qrList.forEach(img => {
+	// 		if (img.img) {
+	// 			qrHTML += `
+	// 			<div>
+	// 				<img src='${img.img}' alt='IMG' height="100" width="100">
+	// 				<br>
+	// 				<br>
+	// 			</div>
+	// 			`
+	// 		}
+	// 	});
 
-		frm.get_field("qr_preview").$wrapper.html(qrHTML);
+	// 	frm.get_field("qr_preview").$wrapper.html(qrHTML);
 		
 
-	},
+	// },
 
 
 
