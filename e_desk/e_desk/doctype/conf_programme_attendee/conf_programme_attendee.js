@@ -64,18 +64,16 @@
 // });
 frappe.ui.form.on('Conf Programme Attendee', {
     setup: function(frm) {
-        // Optionally disable the save button (uncomment if needed)
-        // frm.disable_save();
         frm.set_query('event', function(doc, cdt, cdn) {
             return {
                 filters: [
-                    ['start_date', '>=', frappe.datetime.get_today()] // Only show upcoming or ongoing conferences
+                    // Filter to show conferences where either start_date or end_date is today or in the future
+                    ['end_date', '>=', frappe.datetime.get_today()]
                 ]
             };
         });
-        
+    
     },
-
     submit: function(frm) {
         var name = JSON.parse(frm.doc.scan_qr).name;
         frm.set_value("scan_qr", "");
