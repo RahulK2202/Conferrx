@@ -87,8 +87,7 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full Name",
-   "reqd": 0
+   "label": "Full Name"
   },
   {
    "fieldname": "e_mail",
@@ -220,15 +219,13 @@
   {
    "fieldname": "contact_person",
    "fieldtype": "Data",
-   "label": "Emergency contact name",
-   "reqd": 1
+   "label": "Emergency contact name"
   },
   {
    "fieldname": "contact_number",
    "fieldtype": "Data",
    "label": "Emergency contact phone number",
-   "options": "phone",
-   "reqd": 1
+   "options": "phone"
   },
   {
    "fieldname": "column_break_z3lsm",
@@ -333,7 +330,7 @@
  "image_field": "profile_photo",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 20:16:44.947664",
+ "modified": "2024-10-15 13:58:46.245973",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Participant",
