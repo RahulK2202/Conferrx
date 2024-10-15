@@ -330,6 +330,11 @@ def register_event_participant(email, confer_id):
 			return "User does not exist. Please register as a new user."
 		
 		participant_id = frappe.db.get_value("Participant", {"e_mail": email}, "name")
+		if participant_id:
+			participant_doc = frappe.get_doc("Participant", participant_id)
+			participant_doc.event = confer_id
+			participant_doc.save(ignore_permissions=True)
+
 		existing_registration = frappe.db.exists("Event Participant", {
 			"event": confer_id,
 			"participant": participant_id
