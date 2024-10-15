@@ -44,6 +44,7 @@ def update_event_participant_role(participant,confer, role_name):
 @frappe.whitelist()
 def get_filtered_confer(doctype, txt, searchfield, start, page_len,filters):
     participant = filters.get('participant')
+    current_datetime = frappe.utils.now_datetime()
     # Query to get Confer records where the Event Participant has the specific participant
     # conf = frappe.db.sql(
     #     """
@@ -68,10 +69,13 @@ def get_filtered_confer(doctype, txt, searchfield, start, page_len,filters):
         """
         SELECT ep.event
         FROM `tabEvent Participant` AS ep
+        JOIN `tabConfer` AS c ON ep.event = c.name
         WHERE ep.participant = %(participant)s
+        AND c.end_date >= %(current_datetime)s
         """,
         {
-            'participant': participant
+            'participant': participant,
+            'current_datetime': current_datetime
         }
     )
     
