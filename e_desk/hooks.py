@@ -52,8 +52,9 @@ fixtures = [
   
     {"dt": "Custom Field", "filters": [["module", "=", "E Desk"]],
     "prefix": "e_desk_custom_fields"},
-     {"dt": "Print Format", "filters": [["module", "=", "E Desk"]],
-    "prefix": "e_desk_print_format"}
+    {"dt": "Print Format", "filters": [["module", "=", "E Desk"]],
+    "prefix": "e_desk_print_format"},
+    {"dt": "Web Form", "filters": [["module", "=", "E Desk"]], "prefix":"e_desk_web_form"}
 ]
 
 
