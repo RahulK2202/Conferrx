@@ -221,7 +221,7 @@ def event_participant_filter(doctype, txt, searchfield, start, page_len, filters
         SELECT p.name, p.full_name 
         FROM `tabEvent Participant` p
         WHERE p.event = %(conference)s
-        AND p.status != 'Registered'                        
+        AND p.status = 'Approved'                        
         AND p.name NOT IN (
             SELECT pt.participant_id 
             FROM `tabRegistration Desk` rd
