@@ -24,7 +24,8 @@
   "registration_fee_collected_section",
   "mode_of_payment",
   "qr",
-  "amended_from"
+  "amended_from",
+  "full_name"
  ],
  "fields": [
   {
@@ -127,12 +128,19 @@
    "label": "Abr",
    "read_only": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Full Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-06 20:19:39.553792",
+ "modified": "2024-10-23 15:38:50.106331",
  "modified_by": "Administrator",
  "module": "E Desk",
  "name": "Registration Desk",
