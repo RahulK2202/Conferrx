@@ -8,7 +8,7 @@ frappe.ui.form.on('Registration Desk', {
 		frm.set_query('confer', function(doc, cdt, cdn) {
             return {
                 filters: [
-                    ['start_date', '>=', frappe.datetime.get_today()] 
+                    ['end_date', '>=', frappe.datetime.get_today()] 
                 ]
             };
         });
