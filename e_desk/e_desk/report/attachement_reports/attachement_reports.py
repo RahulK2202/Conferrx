@@ -53,26 +53,16 @@ def get_columns():
     ]
 
 def get_data(filters):
-    print("This is the changes")
     confer_id = filters.get("confer_id")
-
-    print(confer_id, "this is confer....")
-
+    
     return frappe.db.sql("""
         SELECT
             parent AS parent,
             document_category AS document_category,
-            CONCAT(
-                '<a href="',
-                CASE
-                    WHEN attach LIKE '/files/%' THEN attach
-                    ELSE CONCAT('/files/', attach)
-                END,
-                '" target="_blank">',
-                SUBSTRING_INDEX(attach, '/', -1),  -- Extract only the file name after the last '/'
-                '</a>'
-            ) AS download_link,
-            SUBSTRING_INDEX(attach, '/', -1) AS attachment_path  -- Show only the file name in attachment path field
+            -- Extract only the file name
+            SUBSTRING_INDEX(attach, '/', -1) AS file_name,
+            -- Create the clickable URL using the file name
+            CONCAT('<a href="', attach, '" target="_blank">', SUBSTRING_INDEX(attach, '/', -1), '</a>') AS download_link
         FROM
             `tabCategory Table`
         WHERE
