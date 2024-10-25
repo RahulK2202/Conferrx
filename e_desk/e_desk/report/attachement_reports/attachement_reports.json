@@ -1,0 +1,39 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-10-25 13:45:52.773944",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2024-10-25 15:22:52.120058",
+ "modified_by": "Administrator",
+ "module": "E Desk",
+ "name": "Attachement Reports",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Confer",
+ "report_name": "Attachement Reports",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Guest"
+  },
+  {
+   "role": "Participant"
+  },
+  {
+   "role": "Volunteer"
+  },
+  {
+   "role": "E-Desk Admin"
+  }
+ ],
+ "timeout": 0
+}
