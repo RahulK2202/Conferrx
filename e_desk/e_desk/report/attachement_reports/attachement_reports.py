@@ -65,8 +65,8 @@ def get_data(filters):
             CONCAT(
                 '<a href="',
                 CASE
-                    WHEN attach LIKE '/private/files/%' THEN attach
-                    ELSE CONCAT('/private/files/', attach)
+                    WHEN attach LIKE '/files/%' THEN attach
+                    ELSE CONCAT('/files/', attach)
                 END,
                 '" target="_blank">',
                 SUBSTRING_INDEX(attach, '/', -1),  -- Extract only the file name after the last '/'
