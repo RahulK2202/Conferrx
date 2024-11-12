@@ -14,6 +14,11 @@ from frappe import _
 class Participant(Document):
 	# @frappe.whitelist(allow_guest=True)
 	def after_insert(self):
+		time_zone = frappe.get_value("Confer", {"name": self.event}, "time_zone")
+		print(time_zone,"thi si zone.........")
+		if not time_zone:
+			frappe.throw("PLease add Conference Time zone")
+
 		if not self.full_name:
 			if self.last_name:
 				self.full_name = f"{self.first_name} {self.last_name}"
@@ -27,6 +32,7 @@ class Participant(Document):
 			doc=frappe.new_doc('User')
 			doc.update({
 				"email":self.e_mail,
+				"time_zone":time_zone,
 				"first_name":self.first_name,
 				"last_name":self.last_name,
 				"mobile_no":self.mobile_number,
@@ -325,9 +331,18 @@ def atten_food_script():
 def register_event_participant(email, confer_id):
 
 	if email and confer_id:
+		time_zone = frappe.get_value("Confer", {"name": confer_id}, "time_zone")
+		print(time_zone,"this is zonee...............")
 		user = frappe.db.get_value("User", {"email": email}, "name")
+
 		if not user:
 			return "User does not exist. Please register as a new user."
+		
+		user_doc=frappe.get_doc("User",{"name":user})
+		user_doc.time_zone=time_zone
+		user_doc.save()
+		frappe.db.commit()
+
 		
 		participant_id = frappe.db.get_value("Participant", {"e_mail": email}, "name")
 		if participant_id:
