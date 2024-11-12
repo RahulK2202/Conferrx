@@ -54,8 +54,9 @@ def get_columns():
 
 def get_data(filters):
     confer_id = filters.get("confer_id")
-    
-    return frappe.db.sql("""
+
+    # Use parameterized query to safely pass confer_id
+    query = """
         SELECT
             parent AS parent,
             document_category AS document_category,
@@ -67,8 +68,11 @@ def get_data(filters):
             `tabCategory Table`
         WHERE
             parenttype = 'Confer'
-            AND parent = "The Tenth Congress of Asian Theologians (CATS-X)"
-    """, as_dict=True)
+            AND parent = %s
+    """
+
+    return frappe.db.sql(query, (confer_id,), as_dict=True)
+
 
 
 
