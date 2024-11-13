@@ -370,27 +370,19 @@ def register_event_participant(email, confer_id):
 		event_participant_doc.save(ignore_permissions=True)
 
 
-	# code 349 sep	
-		# user_permission_doc = frappe.new_doc('User Permission')
-		# user_permission_doc.update({
-		# 			"user": email,
-		# 			"allow": "Event Participant",
-		# 			"for_value": event_participant_doc.name,
-		# 			"apply_to_all_doctypes": True,
-		# 			# "applicable_for": ["Confer"]
-		# 		})
-		
-		# user_permission_doc.save(ignore_permissions=True)
-		  # Create User Permission for Confer doctype
-		confer_permission_doc = frappe.new_doc('User Permission')
-		
-		confer_permission_doc.update({
-            "user": email,
-            "allow": "Confer",
-            "for_value": confer_id,
-            "apply_to_all_doctypes": False,  # Set to False if you want this permission to apply only to this specific Confer
-        })
-		confer_permission_doc.save(ignore_permissions=True)
+		roles = frappe.get_roles(user)
+		print(user,"user................")
+		print(roles,"this is roles...........") 
+		if "E-Desk Admin" not in roles:
+			confer_permission_doc = frappe.new_doc('User Permission')
+			
+			confer_permission_doc.update({
+				"user": email,
+				"allow": "Confer",
+				"for_value": confer_id,
+				"apply_to_all_doctypes": False,  # Set to False if you want this permission to apply only to this specific Confer
+			})
+			confer_permission_doc.save(ignore_permissions=True)
 
 		
 		
